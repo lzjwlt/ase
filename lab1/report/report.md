@@ -25,21 +25,21 @@ git clone git@github.com:lzjustc/ase.git
 ``` shell
 vim hello.c
 ```
-![image](/lab1/report/vim.png)
+![image](/lab1/report/vim.png)  
 4. 使用gcc编译hello.c并执行编译后的程序
 ``` shell
 ls
 gcc -o hello hello.c
 ./ hello
 ```
-![image](/lab1/report/shell2.png)
+![image](/lab1/report/shell2.png)  
 5. 把```hello.c```加入版本库并push到我的github上
 ``` shell
 git add hello.c
 git commit -m "hello world"
 git push
 ```
-![image](/git.png)  
+![image](/lab1/report/git.png)  
 6. 撰写实验报告  
 大功告成！
 
@@ -48,7 +48,7 @@ git push
 被大神洗脑说bash不好用，装了fish，没用过bash，也就不明白bash是怎么个不好用。  
 不会github怎么能说自己是搞IT的？github从入门到。。最好不要放弃233  
 github遇见问题就是SSH-Key了，clone过程遇到以下提示：  
-![image](/lab1/report/keydenied.png)  
+![image](/lab1/report/key denied.png)  
 后来在github官网和百度的帮助下，成功解决，如图  
 ![image](/lab1/report/key2.png)  
 之后的问题是写报告，学习了一下markdown语法，遇到的问题也不少。结论：看文档是万能的。  
