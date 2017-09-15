@@ -20,7 +20,7 @@ cd ase
 git clone git@github.com:lzjustc/ase.git
 ```  
 
-![image](/lab1/report/git clone.png)  
+![image](/lab1/report/gitclone1.png)  
 ![image](/lab1/report/shell1.png)  
 3. 使用vim创建hello.c
 ``` shell
@@ -49,7 +49,7 @@ git push
 被大神洗脑说bash不好用，装了fish，没用过bash，也就不明白bash是怎么个不好用。  
 不会github怎么能说自己是搞IT的？github从入门到。。最好不要放弃233  
 github遇见问题就是SSH-Key了，clone过程遇到以下提示：  
-![image](/lab1/report/key denied.png)  
+![image](/lab1/report/keydenied.png)  
 后来在github官网和百度的帮助下，成功解决，如图  
 ![image](/lab1/report/key2.png)  
 之后的问题是写报告，学习了一下markdown语法，遇到的问题也不少。结论：看文档是万能的。  
