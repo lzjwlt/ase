@@ -19,8 +19,8 @@ mkdir ase
 cd ase
 git clone git@github.com:lzjustc/ase.git
 ```
-![image](/gitclone.png)  
-![image](/shell1.png)
+![image](/lab1/report/gitclone.png)  
+![image](/lab1/report/shell1.png)
 3. 使用vim创建hello.c
 ``` shell
 vim hello.c
