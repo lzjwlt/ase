@@ -26,7 +26,7 @@ static tCMDNode head[] =
     {"version", Version, &head[2]},
     {"quit", Quit, &head[3]},
     {"hello", Hello, &head[4]},
-    {"time", Time,&head[5]},
+    {"time", Time, &head[5]},
     {"author", Author, &head[6]},
     {"triangle", Triangle, &head[7]},
     {"heart", Heart, NULL}
@@ -38,7 +38,7 @@ int main()
     while(1)
     {
         tCMDNode *p = head;
-        printf("menu command->");
+        printf("menu cmd-> ");
         scanf("%s", cmd);
         while(p != NULL)
         {
@@ -65,6 +65,7 @@ void Help()
 }
 void Version()
 {
+    printf("menu version v1.0");
 }
 void Quit()
 {
@@ -100,8 +101,33 @@ void Author()
 }
 void Triangle()
 {
+    int i,j;
+    int n = 20;
+    for(i = 0; i < n; i++)
+    {
+        for(j = n - i + 10; j > 0; j--)
+        {
+            putchar(' ');
+        }
+        for(j = 0; j < i * 2 - 1; j++)
+        {
+            putchar('*');
+        }
+        putchar('\n');
+    }
 }
 void Heart()
 {
+    float x, y;
+    for(y = 1.5f; y > -1.5f; y -= 0.1f)
+    {
+        for(x = -1.5f; x < 1.5f; x += 0.05f)
+        {
+            float a = x * x + y * y - 1;
+            putchar(a * a * a - x * x * y * y * y <= 0.0f ? '*': ' ');
+        }
+        putchar('\n');
+    }
+
 }
 
