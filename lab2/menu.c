@@ -59,19 +59,34 @@ int main()
     }
     return 0;
 }
+
 void Help()
 {
-    printf("This is help command\n");
+    printf("*************************************************************\n");
+    printf("This is help command.\n\n");
+    printf("commands:\n");
+    printf("help:\t\t show this help command.\n");
+    printf("version:\t show version of menu.\n");
+    printf("author:\t\t show author infomation\n");
+    printf("quit:\t\t quit this menu program and back to os.\n");
+    printf("hello:\t\t say hello to users.\n");
+    printf("time:\t\t show the system date and time.\n");
+    printf("triangle:\t show a big triangle on screen.\n");
+    printf("heart:\t\t show a big heart on screen.\n");
+    printf("*************************************************************\n");
 }
+
 void Version()
 {
-    printf("menu version v1.0");
+    printf("menu version v1.0\n");
 }
+
 void Quit()
 {
     printf("Goodbye\n");
     exit(0);
 }
+
 void Hello()
 {
     printf("Hi, How are you?\n");
@@ -92,13 +107,23 @@ void Hello()
         printf("Sorry, I can't understand it!\n");
     }
 }
+
 void Time()
 {
     system("date");
 }
+
 void Author()
 {
+    printf("*************************************************************\n");
+    printf("\t\t\tAuthor infomation\n\n");
+    printf("Name:\t\t Li Zhijun (厉治军)\n");
+    printf("Student ID:\t SA17225184\n");
+    printf("Class:\t\t 软设2班\n");
+    printf("\t\t School of software engineering, USTC\n");
+    printf("*************************************************************\n");
 }
+
 void Triangle()
 {
     int i,j;
@@ -116,6 +141,7 @@ void Triangle()
         putchar('\n');
     }
 }
+
 void Heart()
 {
     float x, y;
