@@ -3,9 +3,8 @@
 ## 目录
 1. 实验要求
 1. 实验过程
+1. 实验结果
 1. 实验心得
-1. 实验总结
-1. 附录：从非实验楼环境提交代码
 ## 1. 实验要求
 ### 代码风格规范
 - 代码风格的原则：简明、易读、无二义性
@@ -193,10 +192,10 @@ git add lab2/menu.c
 git commit -m "add menu.c"
 git push
 ```
-## 实验结果
+## 3. 实验结果
 ![image](/lab2/img/helpVersionTime.png)  
 ![image](/lab2/img/authorHelloHeart.png)  
 ![image](/lab2/img/triangleQuit.png)  
 
-## 实验心得
+## 4. 实验心得
 学习并采用了通过以链表的方式遍历查找到函数指针来执行相应的函数，复习了C语言和数据结构方面的知识。
