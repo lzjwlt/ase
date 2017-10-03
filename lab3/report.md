@@ -11,14 +11,14 @@
 1. 遵守代码风格规范，参考借鉴代码设计规范的一些方法；
 2. 代码的业务逻辑和数据存储使用不同的源文件实现，即应该有2个.c和一个.h作为接口文件。
 ## 2. 实验过程
-1. 进入实验文件夹，新建一个linklist.h并编辑它。
+1. 进入实验文件夹，新建一个`linklist.h`并编辑它。
 ``` bash
 cd /home/lzj/homework/asework/ase
 mkdir lab3
 cd lab3
 vim linklist.h
 ```
-linklist.h代码如下：
+`linklist.h`代码如下：
 ``` c++
 typedef struct CMDNode
 {
@@ -32,7 +32,7 @@ tCMDNode* FindCmd(tCMDNode* head, char* cmd);
 
 void ShowAllCmd(tCMDNode* head);
 ```
-2. 新建一个linklist.c并编辑，代码如下：  
+2. 新建一个`linklist.c`并编辑，代码如下：  
 
 ``` c++
 #include <stdio.h>
@@ -77,7 +77,7 @@ void ShowAllCmd(tCMDNode* head)
     return;
 }
 ```
-3. 新建menu.c， 代码如下：
+3. 新建`menu.c`， 代码如下：
 
 ``` c++
 #include <stdio.h>
