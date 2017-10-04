@@ -233,7 +233,7 @@ git add lab3/menu.c lab3/linklist.c lab3/linklist.h
 git commit -m "add lab3"
 git push
 ```
-[代码库地址](https://github.com/lzjustc/ase/edit/master/lab3/report.md)  
+[代码库地址](https://github.com/lzjustc/ase/tree/master/lab3)  
 ## 3. 实验结果
 ![image](/lab3/img/img1.png)  
 ![image](/lab3/img/img2.png)  
