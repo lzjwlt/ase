@@ -48,27 +48,28 @@ int ShowAllCmd(tLinkTable* head)
 }
 
 typedef struct CMDNode
-    {
-        char* cmd;
-        char* desc;
-        void (*handler)();
-        struct CMDNode *next;
-    }tCMDNode;
-    
-tCMDNode cmdHead[] = 
 {
-    {"help", "This is help command.", Help, &cmdHead[1]},
-    {"version","Show version of this menu program.", Version, &cmdHead[2]},
-    {"quit", "Quit and back to OS.", Quit, &cmdHead[3]},
-    {"hello", "Say hello to users.", Hello, &cmdHead[4]},
-    {"time", "Show system date and time.", Time, &cmdHead[5]},
-    {"author", "Show author information.", Author, &cmdHead[6]},
-    {"triangle", "Show a big triangle on screen.", Triangle, &cmdHead[7]},
-    {"heart", "Show a big heart on screen.", Heart, NULL}
-};
+    char* cmd;
+    char* desc;
+    void (*handler)();
+    struct CMDNode *next;
+}tCMDNode;
     
+tCMDNode Head[] =
+{
+    {"help", "This is help command.", Help, &Head[1]},
+    {"version","Show version of this menu program.", Version, &Head[2]},
+    {"quit", "Quit and back to OS.", Quit, &Head[3]},
+    {"hello", "Say hello to users.", Hello, &Head[4]},
+    {"time", "Show system date and time.", Time, &Head[5]},
+    {"author", "Show author information.", Author, &Head[6]},
+    {"triangle", "Show a big triangle on screen.", Triangle, &Head[7]},
+    {"heart", "Show a big heart on screen.", Heart, &Head[8]},
+    {NULL, NULL, NULL, NULL}
+};
+
 tLinkTable* InitMenuData(tCMDNode* cmdHead)
-{    
+{
     tLinkTable* pLinkTable = CreateLinkTable();
     int i;
     for(i=0; cmdHead[i].next != NULL; i++)
@@ -77,14 +78,14 @@ tLinkTable* InitMenuData(tCMDNode* cmdHead)
         pNode->cmd = cmdHead[i].cmd;
         pNode->desc = cmdHead[i].desc;
         pNode->handler = cmdHead[i].handler;
-        AddLinkTableNode(pLinkTable, (tLinkTableNode*)pNode);        
+        AddLinkTableNode(pLinkTable, (tLinkTableNode*)pNode);
     }
     return pLinkTable;
 }
 
 int main()
 {
-    tLinkTable* head = InitMenuData(cmdHead);
+    tLinkTable* head = InitMenuData(Head);
     char cmd[CMD_MAX_LENGTH];    
     while(1)
     {
@@ -108,7 +109,7 @@ void Help()
     printf("*************************************************************\n");
     printf("This is help command.\n\n");
     printf("commands:\n");
-    tLinkTable* head = InitMenuData(cmdHead);
+    tLinkTable* head = InitMenuData(Head);
     ShowAllCmd(head);
     printf("*************************************************************\n");
 }
