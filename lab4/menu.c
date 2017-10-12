@@ -64,20 +64,19 @@ tCMDNode Head[] =
     {"time", "Show system date and time.", Time, &Head[5]},
     {"author", "Show author information.", Author, &Head[6]},
     {"triangle", "Show a big triangle on screen.", Triangle, &Head[7]},
-    {"heart", "Show a big heart on screen.", Heart, &Head[8]},
-    {NULL, NULL, NULL, NULL}
+    {"heart", "Show a big heart on screen.", Heart, NULL},
 };
 
-tLinkTable* InitMenuData(tCMDNode* cmdHead)
+tLinkTable* InitMenuData(tCMDNode* Head)
 {
     tLinkTable* pLinkTable = CreateLinkTable();
     int i;
-    for(i=0; cmdHead[i].next != NULL; i++)
+    for(i=0; pLinkTable->sumOfNode < 7; i++)
     {
-        tDataNode* pNode = (tDataNode*)malloc(sizeof(tDataNode*));
-        pNode->cmd = cmdHead[i].cmd;
-        pNode->desc = cmdHead[i].desc;
-        pNode->handler = cmdHead[i].handler;
+        tDataNode* pNode = (tDataNode*)malloc(sizeof(tDataNode));
+        pNode->cmd = Head[i].cmd;
+        pNode->desc = Head[i].desc;
+        pNode->handler = Head[i].handler;
         AddLinkTableNode(pLinkTable, (tLinkTableNode*)pNode);
     }
     return pLinkTable;
