@@ -241,11 +241,11 @@ tCMDNode Head[] =
     {"heart", "Show a big heart on screen.", Heart, NULL},
 };
 
-tLinkTable* InitMenuData(tCMDNode* Head)
+tLinkTable* InitMenuData(tCMDNode* Head, int length)
 {
     tLinkTable* pLinkTable = CreateLinkTable();
     int i;
-    for(i=0; pLinkTable->sumOfNode < 7; i++)
+    for(i=0; pLinkTable->sumOfNode < length; i++)
     {
         tDataNode* pNode = (tDataNode*)malloc(sizeof(tDataNode));
         pNode->cmd = Head[i].cmd;
@@ -258,7 +258,7 @@ tLinkTable* InitMenuData(tCMDNode* Head)
 
 int main()
 {
-    tLinkTable* head = InitMenuData(Head);
+    tLinkTable* head = InitMenuData(Head, 8);
     char cmd[CMD_MAX_LENGTH];    
     while(1)
     {
@@ -282,7 +282,7 @@ void Help()
     printf("*************************************************************\n");
     printf("This is help command.\n\n");
     printf("commands:\n");
-    tLinkTable* head = InitMenuData(Head);
+    tLinkTable* head = InitMenuData(Head, 8);
     ShowAllCmd(head);
     printf("*************************************************************\n");
 }
@@ -386,7 +386,7 @@ git push
 老师的初始化方法里如此多的代码重复，看着实在受不了。于是想到在之前的初始化方法上修改。 
 定义了结构体和外部变量`Head`
 ``` c++
-tCMDNode cmdHead[] = 
+tCMDNode Head[] = 
 {
     {"help", "This is help command.", Help, &cmdHead[1]},
     {"version","Show version of this menu program.", Version, &cmdHead[2]},
@@ -400,11 +400,11 @@ tCMDNode cmdHead[] =
 ```
 然后通过InitMenuData函数，返回一个所需要的linktable结构。
 ``` c++
-tLinkTable* InitMenuData(tCMDNode* Head)
+tLinkTable* InitMenuData(tCMDNode* Head, int length)
 {
     tLinkTable* pLinkTable = CreateLinkTable();
     int i;
-    for(i=0; pLinkTable->sumOfNode < 7; i++)
+    for(i=0; pLinkTable->sumOfNode < length; i++)
     {
         tDataNode* pNode = (tDataNode*)malloc(sizeof(tDataNode));
         pNode->cmd = Head[i].cmd;
@@ -417,16 +417,16 @@ tLinkTable* InitMenuData(tCMDNode* Head)
 ```
 依上一次试验的葫芦画瓢，定义外部变量`head`
 ``` c++
-tLinkTable* head = InitMenuData(Head);
+tLinkTable* head = InitMenuData(Head, 8);
 ```
 好像就可以在`main()`里面直接使用了。去掉了这么多的重复代码好开心。  
 编译，结果果然有问题，error。
 ```
 menu.c:85:20: 错误：初始值设定元素不是常量
- tLinkTable* head = InitMenuData(Head);
+ tLinkTable* head = InitMenuData(Head, 8);
 ```
 ![image](/lab4/img/img3.png)  
 回头才发现，原来C语言里，外部变量必须初始化为常量，不能通过函数来返回一个非常量的值。  
-于是，将`tLinkTable* head = InitMenuData(Head);`定义在`main()`内部，并作一些相应的修改，通过。  
+于是，将`tLinkTable* head = InitMenuData(Head, 8);`定义在`main()`内部，并作一些相应的修改，通过。  
   
 [附实验代码库git地址](https://github.com/lzjustc/ase/tree/master/lab4)
