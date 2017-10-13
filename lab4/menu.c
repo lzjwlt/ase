@@ -67,11 +67,11 @@ tCMDNode Head[] =
     {"heart", "Show a big heart on screen.", Heart, NULL},
 };
 
-tLinkTable* InitMenuData(tCMDNode* Head)
+tLinkTable* InitMenuData(tCMDNode* Head, int length)
 {
     tLinkTable* pLinkTable = CreateLinkTable();
     int i;
-    for(i=0; pLinkTable->sumOfNode < 7; i++)
+    for(i=0; pLinkTable->sumOfNode < length; i++)
     {
         tDataNode* pNode = (tDataNode*)malloc(sizeof(tDataNode));
         pNode->cmd = Head[i].cmd;
@@ -84,7 +84,7 @@ tLinkTable* InitMenuData(tCMDNode* Head)
 
 int main()
 {
-    tLinkTable* head = InitMenuData(Head);
+    tLinkTable* head = InitMenuData(Head, 8);
     char cmd[CMD_MAX_LENGTH];    
     while(1)
     {
@@ -108,7 +108,7 @@ void Help()
     printf("*************************************************************\n");
     printf("This is help command.\n\n");
     printf("commands:\n");
-    tLinkTable* head = InitMenuData(Head);
+    tLinkTable* head = InitMenuData(Head, 8);
     ShowAllCmd(head);
     printf("*************************************************************\n");
 }
@@ -153,11 +153,11 @@ void Time()
 void Author()
 {
     printf("*************************************************************\n");
-    printf("\t\t\tAuthor infomation\n\n");
-    printf("Name:\t\t Li Zhijun (厉治军)\n");
-    printf("Student ID:\t SA17225184\n");
-    printf("Class:\t\t 软设2班\n");
-    printf("\t\t School of software engineering, USTC\n");
+    printf("Author infomation\n\n");
+    printf("%12s :  Li Zhijun (厉治军)\n", "name");
+    printf("%12s :  SA17225184\n", "Student ID");
+    printf("%12s :  软设2班\n", "Class");
+    printf("School of software engineering, USTC\n");
     printf("*************************************************************\n");
 }
 
