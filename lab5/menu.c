@@ -195,6 +195,5 @@ void Heart()
         }
         putchar('\n');
     }
-
 }
 
