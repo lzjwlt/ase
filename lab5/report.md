@@ -61,32 +61,27 @@ cp ../lab4/*.c ../lab4/*.h .
 #define SUCCESS 0
 #define FAILURE (-1)
 
+//信息隐藏
+//LinkTable类型没有放在头文件
 typedef struct LinkTableNode
 {
     struct LinkTableNode* pNext;
 }tLinkTableNode;
 
-typedef struct LinkTable
-{
-    tLinkTableNode *pHead;
-    tLinkTableNode *pTail;
-    int             sumOfNode;
-}tLinkTable;
+tLinkTableNode* CreateLinkTable();
 
-tLinkTable* CreateLinkTable();
+int DeleteLinkTable(tLinkTableNode* pLinkTable);
 
-int DeleteLinkTable(tLinkTable* pLinkTable);
+int AddLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
 
-int AddLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode);
-
-int DelLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode);
+int DelLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
 
 
-tLinkTableNode * SearchLinkTableNode(tLinkTable *pLinkTable, int Conditon(tLinkTableNode * pNode));
+tLinkTableNode * SearchLinkTableNode(tLinkTableNode *pLinkTable, int Conditon(tLinkTableNode * pNode));
 
-tLinkTableNode* GetLinkTableHead(tLinkTable* pLinkTable);
+tLinkTableNode* GetLinkTableHead(tLinkTableNode* pLinkTable);
 
-tLinkTableNode * GetNextLinkTableNode(tLinkTable *pLinkTable,tLinkTableNode * pNode);
+tLinkTableNode * GetNextLinkTableNode(tLinkTableNode *pLinkTable,tLinkTableNode * pNode);
 
 #endif /* _LINK_TABLE_H_ */
 ```
@@ -96,7 +91,15 @@ tLinkTableNode * GetNextLinkTableNode(tLinkTable *pLinkTable,tLinkTableNode * pN
 #include <stdlib.h>
 #include "linktable.h"
 
-tLinkTable* CreateLinkTable()
+//信息隐藏
+typedef struct LinkTable
+{
+    tLinkTableNode *pHead;
+    tLinkTableNode *pTail;
+    int             sumOfNode;
+}tLinkTable;
+
+tLinkTableNode* CreateLinkTable()
 {
     tLinkTable* pLinkTable = (tLinkTable*)malloc(sizeof(tLinkTable));
     if(pLinkTable == NULL)
@@ -109,8 +112,9 @@ tLinkTable* CreateLinkTable()
     return pLinkTable;
 }
 
-int DeleteLinkTable(tLinkTable* pLinkTable)
+int DeleteLinkTable(tLinkTableNode* ppLinkTable)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if(pLinkTable == NULL)
     {
         return FAILURE;
@@ -128,8 +132,9 @@ int DeleteLinkTable(tLinkTable* pLinkTable)
     return SUCCESS;
 }
 
-int AddLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
+int AddLinkTableNode(tLinkTableNode* ppLinkTable, tLinkTableNode* pNode)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pNode == NULL)
     {
         return FAILURE;
@@ -152,8 +157,9 @@ int AddLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
     return SUCCESS;
 }
 
-int DelLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
+int DelLinkTableNode(tLinkTableNode* ppLinkTable, tLinkTableNode* pNode)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pNode == NULL)
     {
         return FAILURE;
@@ -186,8 +192,9 @@ int DelLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
     return FAILURE;
 }
 
-tLinkTableNode * SearchLinkTableNode(tLinkTable *pLinkTable, int Conditon(tLinkTableNode * pNode))
+tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(tLinkTableNode * pNode))
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if(pLinkTable == NULL || Conditon == NULL)
     {
         return NULL;
@@ -204,8 +211,9 @@ tLinkTableNode * SearchLinkTableNode(tLinkTable *pLinkTable, int Conditon(tLinkT
     return NULL;
 }
 
-tLinkTableNode* GetLinkTableHead(tLinkTable* pLinkTable)
+tLinkTableNode* GetLinkTableHead(tLinkTableNode* ppLinkTable)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pLinkTable->pHead == NULL)
     {
         return NULL;
@@ -213,8 +221,9 @@ tLinkTableNode* GetLinkTableHead(tLinkTable* pLinkTable)
     return pLinkTable->pHead;
 }
 
-tLinkTableNode * GetNextLinkTableNode(tLinkTable *pLinkTable,tLinkTableNode * pNode)
+tLinkTableNode * GetNextLinkTableNode(tLinkTableNode *ppLinkTable,tLinkTableNode * pNode)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pNode == NULL)
     {
         return NULL;
@@ -237,6 +246,14 @@ tLinkTableNode * GetNextLinkTableNode(tLinkTable *pLinkTable,tLinkTableNode * pN
 #include <stdlib.h>
 #include <string.h>
 #include "linktable.h"
+
+//信息隐藏
+typedef struct LinkTable
+{
+    tLinkTableNode *pHead;
+    tLinkTableNode *pTail;
+    int             sumOfNode;
+}tLinkTable;
 
 void Help();
 void Version();
@@ -431,6 +448,8 @@ void Heart()
         putchar('\n');
     }
 }
+
+
 ```
 ### 3 实验结果
 ![image](img/img5.png)  
@@ -440,3 +459,5 @@ void Heart()
 - 回调函数就是一个通过函数指针调用的函数。如果你把函数的指针（地址）作为参数传递给另一个函数，当这个指针被用来调用其所指向的函数时，我们就说这是回调函数。回调函数不是由该函数的实现方直接调用，而是在特定的事件或条件发生时由另外的一方调用的，用于对该事件或条件进行响应。
 - 因为可以把调用者与被调用者分开，所以调用者不关心谁是被调用者。它只需知道存在一个具有特定原型和限制条件的被调用函数。简而言之，回调函数就是允许用户把需要调用的方法的指针作为参数传递给一个函数，以便该函数在处理相似事件的时候可以灵活的使用不同的方法。
 - callback函数的使用提高了代码的重用性，实现了更松的耦合。同时将一些内部结构接口隐藏，简化了用户接口，更保证了使用安全，减少误操作。
+-
+注意接口的信息隐藏，Linktable的内部结构不应该出现在.h的接口文件。

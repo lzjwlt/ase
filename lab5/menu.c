@@ -3,6 +3,13 @@
 #include <string.h>
 #include "linktable.h"
 
+typedef struct LinkTable
+{
+    tLinkTableNode *pHead;
+    tLinkTableNode *pTail;
+    int             sumOfNode;
+}tLinkTable;
+
 void Help();
 void Version();
 void Quit();

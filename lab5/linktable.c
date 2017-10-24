@@ -2,7 +2,14 @@
 #include <stdlib.h>
 #include "linktable.h"
 
-tLinkTable* CreateLinkTable()
+typedef struct LinkTable
+{
+    tLinkTableNode *pHead;
+    tLinkTableNode *pTail;
+    int             sumOfNode;
+}tLinkTable;
+
+tLinkTableNode* CreateLinkTable()
 {
     tLinkTable* pLinkTable = (tLinkTable*)malloc(sizeof(tLinkTable));
     if(pLinkTable == NULL)
@@ -15,8 +22,9 @@ tLinkTable* CreateLinkTable()
     return pLinkTable;
 }
 
-int DeleteLinkTable(tLinkTable* pLinkTable)
+int DeleteLinkTable(tLinkTableNode* ppLinkTable)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if(pLinkTable == NULL)
     {
         return FAILURE;
@@ -34,8 +42,9 @@ int DeleteLinkTable(tLinkTable* pLinkTable)
     return SUCCESS;
 }
 
-int AddLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
+int AddLinkTableNode(tLinkTableNode* ppLinkTable, tLinkTableNode* pNode)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pNode == NULL)
     {
         return FAILURE;
@@ -58,8 +67,9 @@ int AddLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
     return SUCCESS;
 }
 
-int DelLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
+int DelLinkTableNode(tLinkTableNode* ppLinkTable, tLinkTableNode* pNode)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pNode == NULL)
     {
         return FAILURE;
@@ -92,8 +102,9 @@ int DelLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode)
     return FAILURE;
 }
 
-tLinkTableNode * SearchLinkTableNode(tLinkTable *pLinkTable, int Conditon(tLinkTableNode * pNode))
+tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(tLinkTableNode * pNode))
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if(pLinkTable == NULL || Conditon == NULL)
     {
         return NULL;
@@ -110,8 +121,9 @@ tLinkTableNode * SearchLinkTableNode(tLinkTable *pLinkTable, int Conditon(tLinkT
     return NULL;
 }
 
-tLinkTableNode* GetLinkTableHead(tLinkTable* pLinkTable)
+tLinkTableNode* GetLinkTableHead(tLinkTableNode* ppLinkTable)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pLinkTable->pHead == NULL)
     {
         return NULL;
@@ -119,8 +131,9 @@ tLinkTableNode* GetLinkTableHead(tLinkTable* pLinkTable)
     return pLinkTable->pHead;
 }
 
-tLinkTableNode * GetNextLinkTableNode(tLinkTable *pLinkTable,tLinkTableNode * pNode)
+tLinkTableNode * GetNextLinkTableNode(tLinkTableNode *ppLinkTable,tLinkTableNode * pNode)
 {
+    tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if (pLinkTable == NULL || pNode == NULL)
     {
         return NULL;
