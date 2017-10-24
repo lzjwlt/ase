@@ -3,6 +3,7 @@
 #include <string.h>
 #include "linktable.h"
 
+//信息隐藏
 typedef struct LinkTable
 {
     tLinkTableNode *pHead;
@@ -23,8 +24,6 @@ void Heart();
 #define DESC_LEN    1024
 #define CMD_NUM     10
 
-char cmd[CMD_MAX_LEN]; 
-
 typedef struct DataNode
 {
     tLinkTableNode* pNext;
@@ -33,8 +32,9 @@ typedef struct DataNode
     void (*handler)();
 }tDataNode;
 
-int SearchCondition(tLinkTableNode * pLinkTableNode)
+int SearchCondition(tLinkTableNode * pLinkTableNode, void* args)
 {
+    char* cmd = (char*)args;
     tDataNode * pNode = (tDataNode *)pLinkTableNode;
     if(strcmp(pNode->cmd, cmd) == 0)
     {
@@ -45,7 +45,7 @@ int SearchCondition(tLinkTableNode * pLinkTableNode)
 
 tDataNode* FindCmd(tLinkTable* head, char* cmd)
 {
-    return  (tDataNode*)SearchLinkTableNode(head,SearchCondition);
+    return  (tDataNode*)SearchLinkTableNode(head,SearchCondition,cmd);
 }
 
 int ShowAllCmd(tLinkTable* head)
@@ -97,6 +97,7 @@ tLinkTable* InitMenuData(tCMDNode* Head, int length)
 int main()
 {
 	tLinkTable* head = InitMenuData(Head, 8); 
+    char* cmd[128];
     while(1)
     {
         printf("menu cmd-> ");

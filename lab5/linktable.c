@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "linktable.h"
 
+//信息隐藏
 typedef struct LinkTable
 {
     tLinkTableNode *pHead;
@@ -102,7 +103,7 @@ int DelLinkTableNode(tLinkTableNode* ppLinkTable, tLinkTableNode* pNode)
     return FAILURE;
 }
 
-tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(tLinkTableNode * pNode))
+tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(tLinkTableNode * pNode, void* args), void* args)
 {
     tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if(pLinkTable == NULL || Conditon == NULL)
@@ -112,7 +113,7 @@ tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(t
     tLinkTableNode * pNode = pLinkTable->pHead;
     while(pNode != NULL)
     {    
-        if(Conditon(pNode) == SUCCESS)
+        if(Conditon(pNode,args) == SUCCESS)
         {
             return pNode;				    
         }

@@ -77,7 +77,7 @@ int AddLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
 int DelLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
 
 
-tLinkTableNode * SearchLinkTableNode(tLinkTableNode *pLinkTable, int Conditon(tLinkTableNode * pNode));
+tLinkTableNode * SearchLinkTableNode(tLinkTableNode *pLinkTable, int Conditon(tLinkTableNode * pNode,void* args), void* args);
 
 tLinkTableNode* GetLinkTableHead(tLinkTableNode* pLinkTable);
 
@@ -192,7 +192,7 @@ int DelLinkTableNode(tLinkTableNode* ppLinkTable, tLinkTableNode* pNode)
     return FAILURE;
 }
 
-tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(tLinkTableNode * pNode))
+tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(tLinkTableNode * pNode, void* args), void* args) //CALLBACK
 {
     tLinkTable* pLinkTable = (tLinkTable*)ppLinkTable;
     if(pLinkTable == NULL || Conditon == NULL)
@@ -202,7 +202,7 @@ tLinkTableNode * SearchLinkTableNode(tLinkTableNode *ppLinkTable, int Conditon(t
     tLinkTableNode * pNode = pLinkTable->pHead;
     while(pNode != NULL)
     {    
-        if(Conditon(pNode) == SUCCESS)
+        if(Conditon(pNode,args) == SUCCESS)
         {
             return pNode;				    
         }
@@ -268,8 +268,6 @@ void Heart();
 #define DESC_LEN    1024
 #define CMD_NUM     10
 
-char cmd[CMD_MAX_LEN]; 
-
 typedef struct DataNode
 {
     tLinkTableNode* pNext;
@@ -278,8 +276,9 @@ typedef struct DataNode
     void (*handler)();
 }tDataNode;
 
-int SearchCondition(tLinkTableNode * pLinkTableNode)
+int SearchCondition(tLinkTableNode * pLinkTableNode, void* args) //CALLBACK
 {
+    char* cmd = (char*)args;
     tDataNode * pNode = (tDataNode *)pLinkTableNode;
     if(strcmp(pNode->cmd, cmd) == 0)
     {
@@ -290,7 +289,7 @@ int SearchCondition(tLinkTableNode * pLinkTableNode)
 
 tDataNode* FindCmd(tLinkTable* head, char* cmd)
 {
-    return  (tDataNode*)SearchLinkTableNode(head,SearchCondition);
+    return  (tDataNode*)SearchLinkTableNode(head,SearchCondition,cmd);//CALLBACK
 }
 
 int ShowAllCmd(tLinkTable* head)
@@ -342,6 +341,7 @@ tLinkTable* InitMenuData(tCMDNode* Head, int length)
 int main()
 {
 	tLinkTable* head = InitMenuData(Head, 8); 
+    char* cmd[128];
     while(1)
     {
         printf("menu cmd-> ");
@@ -448,8 +448,6 @@ void Heart()
         putchar('\n');
     }
 }
-
-
 ```
 ### 3 实验结果
 ![image](img/img5.png)  

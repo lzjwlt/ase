@@ -20,7 +20,7 @@ int AddLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
 int DelLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
 
 
-tLinkTableNode * SearchLinkTableNode(tLinkTableNode *pLinkTable, int Conditon(tLinkTableNode * pNode));
+tLinkTableNode * SearchLinkTableNode(tLinkTableNode *pLinkTable, int Conditon(tLinkTableNode * pNode,void* args), void* args);
 
 tLinkTableNode* GetLinkTableHead(tLinkTableNode* pLinkTable);
 
