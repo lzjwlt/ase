@@ -4,26 +4,29 @@
 #define SUCCESS 0
 #define FAILURE (-1)
 
-//信息隐藏
-//LinkTable类型没有放在头文件
+
 typedef struct LinkTableNode
 {
     struct LinkTableNode* pNext;
 }tLinkTableNode;
 
-tLinkTableNode* CreateLinkTable();
+//信息隐藏
+//LinkTable类型没有放在头文件
+typedef struct LinkTable tLinkTable;
 
-int DeleteLinkTable(tLinkTableNode* pLinkTable);
+tLinkTable* CreateLinkTable();
 
-int AddLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
+int DeleteLinkTable(tLinkTable* pLinkTable);
 
-int DelLinkTableNode(tLinkTableNode* pLinkTable, tLinkTableNode* pNode);
+int AddLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode);
+
+int DelLinkTableNode(tLinkTable* pLinkTable, tLinkTableNode* pNode);
 
 
-tLinkTableNode * SearchLinkTableNode(tLinkTableNode *pLinkTable, int Conditon(tLinkTableNode * pNode,void* args), void* args);
+tLinkTableNode * SearchLinkTableNode(tLinkTable *pLinkTable, int Conditon(tLinkTableNode * pNode,void* args), void* args);
 
-tLinkTableNode* GetLinkTableHead(tLinkTableNode* pLinkTable);
+tLinkTableNode* GetLinkTableHead(tLinkTable* pLinkTable);
 
-tLinkTableNode * GetNextLinkTableNode(tLinkTableNode *pLinkTable,tLinkTableNode * pNode);
+tLinkTableNode * GetNextLinkTableNode(tLinkTable* pLinkTable,tLinkTableNode * pNode);
 
 #endif /* _LINK_TABLE_H_ */

@@ -3,14 +3,6 @@
 #include <string.h>
 #include "linktable.h"
 
-//信息隐藏
-typedef struct LinkTable
-{
-    tLinkTableNode *pHead;
-    tLinkTableNode *pTail;
-    int             sumOfNode;
-}tLinkTable;
-
 void Help();
 void Version();
 void Quit();
@@ -97,7 +89,7 @@ tLinkTable* InitMenuData(tCMDNode* Head, int length)
 int main()
 {
 	tLinkTable* head = InitMenuData(Head, 8); 
-    char* cmd[128];
+    char* cmd[CMD_MAX_LEN];
     while(1)
     {
         printf("menu cmd-> ");
