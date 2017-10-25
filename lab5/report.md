@@ -45,14 +45,19 @@ rm -rf lab5.1
 将`while(pNode != pLinkTable -> pTail)`改为`while(pNode != NULL)`即可，如图所示。  
 ![image](img/img4.png)  
 ### 2.2 利用callback函数参数使Linktable的查询接口更加通用  
+``` c++
+tLinkTableNode * SearchLinkTableNode(tLinkTable *pLinkTable, int Conditon(tLinkTableNode * pNode,void* args), void* args);
+```
+代码隐藏： 将结构体LinkTable的定义放在`LinkTable.c`中，头文件只留下声明。  
 #### 2.2.1 准备工作
 将2.1改错实验的文件打包入`lab5/lab5.1`，将lab4的实验文件copy到lab5，以此为基础进行修改。
-`
+
 ``` shell
 mkdir lab5.1
 mv * lab5.1
 cp ../lab4/*.c ../lab4/*.h .
 ```
+
 #### 2.2.2 `linktable.h`代码如下
 ``` c++
 #ifndef _LINK_TABLE_H_
