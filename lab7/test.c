@@ -95,9 +95,9 @@ int Author(int argc, char* argv[])
 {
 	printf("*************************************************************\n");
 	printf("Author infomation\n\n");
-	printf("%12s :  Li Zhijun (À÷ÖÎ¾ü)\n", "name");
+	printf("%12s :  Li Zhijun (å‰æ²»å†›)\n", "name");
 	printf("%12s :  SA17225184\n", "Student ID");
-	printf("%12s :  ÈíÉè2°à\n", "Class");
+	printf("%12s :  è½¯è®¾2ç­\n", "Class");
 	printf("School of software engineering, USTC\n");
 	printf("*************************************************************\n");
 	return 0;
