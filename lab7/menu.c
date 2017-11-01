@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "linktable.h"
+#include "menu.h"
 
 #define CMD_MAX_LEN 128
 #define DESC_LEN    1024
@@ -46,10 +48,35 @@ int ShowAllCmd(tLinkTable* head)
 
 int Help(int argc, char* argv[])
 {
+    int ch;
+    char* ch_prom;
 	printf("*************************************************************\n");
 	printf("This is help command.\n\n");
 	printf("commands:\n");
-	ShowAllCmd(head);
+    if(argc ==1)
+    {
+        ShowAllCmd(head);
+        return 0;
+    }
+    while((ch = getopt(argc, argv, "shl:")) != -1)
+    {
+        switch(ch)
+        {
+            case 's':
+                printf("This is \"-s\" mode help\n");
+                break;
+            case 'h':
+                printf("This is \"-h\" mode help\n");
+                break;
+            case 'l':
+                ch_prom = optarg;
+                printf("This is \"-l\" mode help with %s\n", ch_prom);
+                break;
+            case '?':
+                printf("Wrong argument!\n");
+        }
+    }
+    optind = 1;
 	printf("*************************************************************\n");
     return 0;
 }
