@@ -12,7 +12,7 @@ typedef struct DataNode
     tLinkTableNode* pNext;
     char* cmd;
     char* desc;
-    int (*handler)(int argc, char argv[]);
+    int (*handler)(int argc, char* argv[]);
 }tDataNode;
 
 tLinkTable* head = NULL;
@@ -44,7 +44,7 @@ int ShowAllCmd(tLinkTable* head)
     return 0;
 }
 
-int Help(int argc, char argv[])
+int Help(int argc, char* argv[])
 {
 	printf("*************************************************************\n");
 	printf("This is help command.\n\n");
@@ -54,7 +54,7 @@ int Help(int argc, char argv[])
     return 0;
 }
 
-int MenuConfig(char* cmd, char* desc, int(*handler)(int argc, char argv[]))
+int MenuConfig(char* cmd, char* desc, int(*handler)(int argc, char* argv[]))
 {
     tDataNode* pNode = NULL;
     if(head == NULL)
@@ -76,15 +76,15 @@ int MenuConfig(char* cmd, char* desc, int(*handler)(int argc, char argv[]))
 
 int ExecuteMenu()
 {
-    char *cmd[CMD_MAX_LEN];
     while(1)
     {
         int argc = 0;
         char *argv[CMD_MAX_ARGV_LEN];
+        char cmd[CMD_MAX_LEN];
         char *pcmd = NULL;
         printf("menu cmd-> ");
         //scanf("%s", cmd);
-        pcmd = fgets(*cmd, CMD_MAX_LEN, stdin);
+        pcmd = fgets(cmd, CMD_MAX_LEN, stdin);
         if(pcmd == NULL)
         {
             continue;
@@ -101,14 +101,14 @@ int ExecuteMenu()
             int len = strlen(argv[0]);
             *(argv[0] + len - 1) = '\0';
         }          
-        tDataNode* p = FindCmd(head, *cmd);      
+        tDataNode* p = FindCmd(head, cmd);      
         if(p == NULL)
         {
             printf("error: Wrong command!\n");
         }
         else
         {
-            p->handler(argc, *argv);
+            p->handler(argc, argv);
         }
     }
     return 0;

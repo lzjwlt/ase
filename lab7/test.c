@@ -8,17 +8,17 @@ typedef struct CMDNode
 {
 	char* cmd;
 	char* desc;
-	int(*handler)(int argc, char argv[]);
+	int(*handler)(int argc, char* argv[]);
 }tCMDNode;
 
-int Help(int argc, char argv[]);
-int Version(int argc, char argv[]);
-int Quit(int argc, char argv[]);
-int Hello(int argc, char argv[]);
-int Time(int argc, char argv[]);
-int Author(int argc, char argv[]);
-int Triangle(int argc, char argv[]);
-int Heart(int argc, char argv[]);
+int Help(int argc, char* argv[]);
+int Version(int argc, char* argv[]);
+int Quit(int argc, char* argv[]);
+int Hello(int argc, char* argv[]);
+int Time(int argc, char* argv[]);
+int Author(int argc, char* argv[]);
+int Triangle(int argc, char* argv[]);
+int Heart(int argc, char* argv[]);
 
 tCMDNode dHead[] =
 {
@@ -44,26 +44,26 @@ int InitMenuData(tCMDNode* dHead, int length)
 	return 0;
 }
 
-int main(int argc, char argv[])
+int main(int argc, char* argv[])
 {
 	InitMenuData(dHead, numOfCmdExHelp);
 	ExecuteMenu();
 	return 0;
 }
 
-int Version(int argc, char argv[])
+int Version(int argc, char* argv[])
 {
 	printf("menu version v3.0\n");
 	return 0;
 }
 
-int Quit(int argc, char argv[])
+int Quit(int argc, char* argv[])
 {
 	printf("Goodbye\n");
 	exit(0);
 }
 
-int Hello(int argc, char argv[])
+int Hello(int argc, char* argv[])
 {
 	printf("Hi, How are you?\n");
 	char answer;
@@ -85,13 +85,13 @@ int Hello(int argc, char argv[])
 	return 0;
 }
 
-int Time(int argc, char argv[])
+int Time(int argc, char* argv[])
 {
 	system("date");
 	return 0;
 }
 
-int Author(int argc, char argv[])
+int Author(int argc, char* argv[])
 {
 	printf("*************************************************************\n");
 	printf("Author infomation\n\n");
@@ -103,7 +103,7 @@ int Author(int argc, char argv[])
 	return 0;
 }
 
-int Triangle(int argc, char argv[])
+int Triangle(int argc, char* argv[])
 {
 	int i, j;
 	int n = 20;
@@ -122,7 +122,7 @@ int Triangle(int argc, char argv[])
 	return 0;
 }
 
-int Heart(int argc, char argv[])
+int Heart(int argc, char* argv[])
 {
 	float x, y;
 	for (y = 1.5f; y > -1.5f; y -= 0.1f)
