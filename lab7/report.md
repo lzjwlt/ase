@@ -154,7 +154,9 @@ clean:
 使用make命令完成编译：  
 ![image](img/img1.png)  
 编译并运行结果如图  
-![image](img/img2.png)  
+![image](img/img2.png) 
+  
+  
 使用`make clean`来删除掉中间文件  
 ### 2.4 使menu子系统支持带参数的复杂命令，并在用户范例代码中自定义一个带参数的复杂命令；可以使用getopt函数获取命令行参数。
 在Help函数中增加了一段自定义参数的命令，使用了`getopt`函数来获取命令行参数
