@@ -17,7 +17,7 @@ http://mooc.study.163.com/course/USTC-1000002006
 ## 二、实验报告目录
 #### 熟悉Linux实验环境
 **【实验一：写一个hello world小程序】**  
-熟悉linux环境、vi的使用、`cd ls dir`等命令。  
+熟悉linux环境、vi的使用、`cd`  `ls`  `dir`等命令。  
 https://github.com/lzjustc/ase/blob/master/lab1/report.md
 #### 代码风格规范
 **【实验二：命令行菜单小程序V1.0】**  
